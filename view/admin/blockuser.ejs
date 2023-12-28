@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Your head content here -->
+</head>
+<body>
+    <h1>Block User</h1>
+
+    <!-- Button to block the user -->
+    <form method="POST" action="/admin/block-user">
+        <input type="hidden" name="userId" value="<%= user._id %>">
+        <button type="submit" class="btn btn-danger">Block User</button>
+    </form>
+
+</body>
+</html>

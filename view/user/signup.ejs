@@ -1,0 +1,251 @@
+<%- include('../Layouts/header.ejs') %>
+
+    <!-- Sign in / Register Modal -->
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <!-- Add other head elements here -->
+        <link rel="stylesheet" href="public/assets/css/style.css">
+
+
+
+    </head>
+    <body>
+        
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="navigateToHome()">
+                            <span aria-hidden="true"><i class="icon-close"></i></span>
+                        </button>
+        
+                        <div class="form-box">
+                            <div class="form-tab">
+                                <ul class="nav nav-pills nav-fill" role="tablist">
+                                    
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="tab-content-5">
+                                    
+                                        <form action="" method="post" onsubmit="return validateForm()">
+                                            <div class="form-group">
+                                                <label for="register-name">Your Name *</label>
+                                                <input type="text" class="form-control" id="register-name" name="username" >
+                                                <div class="error-message" style="color: red;" id="name-error"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="register-email">Your email address *</label>
+                                                <input type="email" class="form-control" id="register-email" name="email" >
+                                                <div class="error-message" style="color: red;" id="email-error"></div>
+                                            </div><!-- End .form-group -->
+                                            <div class="form-group">
+                                                <label for="register-phone number">Your Phone Number *</label>
+                                                <input type="number" class="form-control" id="mobile" name="phone" >
+                                                <div class="error-message" style="color:red;" id="phone-error"></div>
+                                            </div>     
+                                            
+                                            <div class="form-group">
+                                                <label for="register-password">Password *</label>
+                                                <input type="password" class="form-control" id="register-password" name="password" >
+                                                <div class="error-message" style="color: red;" id="password-error"></div>
+
+                                            </div><!-- End .form-group -->
+
+                                            <div class="form-group">
+                                                <label for="register-password">Confirm Password *</label>
+                                                <input type="password" class="form-control" id="register-cpassword" name="confirmPassword" >
+                                                <div class="error-message" style="color: red;" id="confirm-password-error"></div>
+
+                                            </div><!-- End .form-group -->
+        
+        
+                                            <div class="form-footer">
+                                                <button type="submit" class="btn btn-outline-primary-2">
+                                                    <span>SIGN UP</span>
+                                                    <i class="icon-long-arrow-right"></i>
+                                                </button>       
+                                                
+                                            </div><!-- End .form-footer -->
+                                            <% if (locals.errorMessage) { %>
+                                                <div class="error-message" style="color: red;">
+                                                    <%= locals.errorMessage %>
+                                                </div>
+                                            <% } %>
+                                        </form>                                        
+                                    </div><!-- .End .tab-pane -->
+                                </div><!-- End .tab-content -->
+                            </div><!-- End .form-tab -->
+                        </div><!-- End .form-box -->
+                    </div><!-- End .modal-body -->
+                </div><!-- End .modal-content -->
+            </div><!-- End .modal-dialog -->
+        </div><!-- End .modal -->
+
+
+    
+    </body>
+    </html>
+    
+    <!-- <script>
+        function validateForm() {
+            // Reset error messages
+            document.getElementById('name-error').textContent = '';
+            document.getElementById('email-error').textContent = '';
+            document.getElementById('phone-error').textContent = '';
+            document.getElementById('password-error').textContent = '';
+            document.getElementById('confirm-password-error').textContent = '';
+    
+            // Get form values
+            var name = document.getElementById('register-name').value.trim();
+            var email = document.getElementById('register-email').value.trim();
+            var phone = document.getElementById('mobile').value.trim();
+            var password = document.getElementById('register-password').value.trim();
+            var confirmPassword = document.getElementById('register-cpassword').value.trim();
+    
+            // Validate Name
+            if (name === '') {
+                document.getElementById('name-error').textContent = 'Name is required.';
+                return false;
+            }
+    
+            // Validate Email
+            if (email === '') {
+                document.getElementById('email-error').textContent = 'Email is required.';
+                return false;
+            }
+    
+            // Validate Phone Number
+            if (phone === '') {
+                document.getElementById('phone-error').textContent = 'Phone Number is required.';
+                return false;
+            } else if (!/^\d{10}$/.test(phone)) {
+                document.getElementById('phone-error').textContent = 'Invalid Phone Number. Please enter a 10-digit number.';
+                return false;
+            }
+    
+            // Validate Password
+            if (password === '') {
+                document.getElementById('password-error').textContent = 'Password is required.';
+                return false;
+            } else if (password.length < 8) {
+            document.getElementById('password-error').textContent = 'Password must be at least 8 characters long.';
+            return false;
+            }
+    
+            // Validate Confirm Password
+            if (confirmPassword === '') {
+                document.getElementById('confirm-password-error').textContent = 'Confirm Password is required.';
+                return false;
+            } else if (confirmPassword !== password) {
+                document.getElementById('confirm-password-error').textContent = 'Passwords do not match.';
+                return false;
+            }
+    
+            // Form is valid, you can submit it
+            return true;
+        }
+        function isStrongPassword(password) {
+        // Add your strong password criteria using regular expressions
+        const regexUpperCase = /[A-Z]/;
+        const regexLowerCase = /[a-z]/;
+        const regexDigit = /\d/;
+        const regexSpecialChar = /[!@#$%^&*(),.?":{}|<>]/;
+
+        return (
+            password.length >= 8 &&
+            regexUpperCase.test(password) &&
+            regexLowerCase.test(password) &&
+            regexDigit.test(password) &&
+            regexSpecialChar.test(password)
+        );
+    }
+    </script>
+     -->
+
+     <script>
+        function validateForm() {
+            // Reset error messages
+            document.getElementById('name-error').textContent = '';
+            document.getElementById('email-error').textContent = '';
+            document.getElementById('phone-error').textContent = '';
+            document.getElementById('password-error').textContent = '';
+            document.getElementById('confirm-password-error').textContent = '';
+    
+            // Get form values
+            var name = document.getElementById('register-name').value.trim();
+            var email = document.getElementById('register-email').value.trim();
+            var phone = document.getElementById('mobile').value.trim();
+            var password = document.getElementById('register-password').value.trim();
+            var confirmPassword = document.getElementById('register-cpassword').value.trim();
+    
+            // Validate Name
+            if (name === '') {
+                document.getElementById('name-error').textContent = 'Name is required.';
+                return false;
+            }
+    
+            // Validate Email
+            if (email === '') {
+                document.getElementById('email-error').textContent = 'Email is required.';
+                return false;
+            }
+    
+            // Validate Phone Number
+            if (phone === '') {
+                document.getElementById('phone-error').textContent = 'Phone Number is required.';
+                return false;
+            } else if (!/^\d{10}$/.test(phone)) {
+                document.getElementById('phone-error').textContent = 'Invalid Phone Number. Please enter a 10-digit number.';
+                return false;
+            }
+    
+            // Validate Password
+            if (password === '') {
+                document.getElementById('password-error').textContent = 'Password is required.';
+                return false;
+            } else if (password.length < 8) {
+                document.getElementById('password-error').textContent = 'Password must be at least 8 characters long.';
+                return false;
+            } else if (!isStrongPassword(password)) {
+                document.getElementById('password-error').textContent = 'Password must be strong (include uppercase, lowercase, digit, and special character).';
+                return false;
+            }
+    
+            // Validate Confirm Password
+            if (confirmPassword === '') {
+                document.getElementById('confirm-password-error').textContent = 'Confirm Password is required.';
+                return false;
+            } else if (confirmPassword !== password) {
+                document.getElementById('confirm-password-error').textContent = 'Passwords do not match.';
+                return false;
+            }
+    
+            // Form is valid, you can submit it
+            return true;
+        }
+    
+        function isStrongPassword(password) {
+            // Add your strong password criteria using regular expressions
+            const regexUpperCase = /[A-Z]/;
+            const regexLowerCase = /[a-z]/;
+            const regexDigit = /\d/;
+            const regexSpecialChar = /[!@#$%^&*(),.?":{}|<>]/;
+    
+            return (
+                regexUpperCase.test(password) &&
+                regexLowerCase.test(password) &&
+                regexDigit.test(password) &&
+                regexSpecialChar.test(password)
+            );
+        }
+    </script>
+    <script>
+        function navigateToHome() {
+            window.location.href = "/";
+        }
+    </script>
+
+
+<%- include('../Layouts/footer.ejs') %>

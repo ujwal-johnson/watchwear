@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit - User Profile</title>
+    <link rel="stylesheet" href="public/style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container light-style flex-grow-1 container-p-y">
+        <h4 class="font-weight-bold py-3 mb-4">
+        my account
+        </h4>
+        <div class="card overflow-hidden">
+            <div class="row no-gutters row-bordered row-border-light">
+                <div class="col-md-3 pt-0">
+                    <div class="list-group list-group-flush account-settings-links">
+                        <a class="list-group-item list-group-item-action active" 
+                            href="/userprofile">Profile</a>
+                        <a class="list-group-item list-group-item-action" 
+                            href="/addressadd">CreateAddress</a>
+                        <a class="list-group-item list-group-item-action"
+                            href="/addresslist">List of Address</a>
+                         <a class="list-group-item list-group-item-action"
+                            href="/home">Home</a>
+                            <a class="list-group-item list-group-item-action" 
+                            href="/orderlist">orderlist</a>
+                         <a class="list-group-item list-group-item-action" 
+                            href="/changepassword">Change Password</a>
+                        <a class="list-group-item list-group-item-action" 
+                            href="/getcoupon">Coupon</a> 
+                            <a class="list-group-item list-group-item-action" 
+                            href="/getwallet">wallet</a>  
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content">
+                        <form id="profileForm" action="/editprofile" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+                
+                            <div class="tab-pane fade active show" id="account-general">
+                                <hr class="border-light m-0">
+                                <div class="card-body">                                    
+                                    <div class="mb-4">
+                                        <label for="image" class="form-label"></label>
+                                            <img src="/adminassets/userImages/<%=user.image%>" id="product_image" alt="users.jpg">
+                                            <input type="file" class="form-control" name="image" id="product_image" value="<%= user.image %>" accept="image/*" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="hidden" name="userId" value="<%= user._id %>" id="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Name</label>
+                                        <input type="text" class="form-control mb-1" name="name" id="name" value="<%= user.name %>">
+                                        <span id="nameError" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">E-mail</label>
+                                        <input type="text" class="form-control mb-1" name="email" id="email" value="<%= user.email %>" readonly>
+                                        <span id="emailError" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Phone</label>
+                                        <input type="text" class="form-control" name="mobile" id="mobile" value="<%= user.mobile %>">
+                                        <span id="mobileError" class="text-danger"></span>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>&nbsp;
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript"></script>
+    <script>
+        function validateForm() {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var mobile = document.getElementById("mobile").value;
+    
+            // Enhanced validation for the name field
+            if (!name.trim()) {
+                document.getElementById("nameError").innerHTML = "Name is required";
+                return false;
+            } else {
+                document.getElementById("nameError").innerHTML = "";
+            }
+    
+            // Enhanced validation for the email field
+            if (!email.trim()) {
+                document.getElementById("emailError").innerHTML = "Email is required";
+                return false;
+            } else {
+                document.getElementById("emailError").innerHTML = "";
+            }
+    
+            // Enhanced validation for the mobile field
+            if (!mobile.trim()) {
+                document.getElementById("mobileError").innerHTML = "Phone is required";
+                return false;
+            } else {
+                document.getElementById("mobileError").innerHTML = "";
+            }
+    
+            // You can add more complex validation if needed
+    
+            return true;
+        }
+    </script>
+    
+    
+</body>
+
+</html>

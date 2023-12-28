@@ -1,0 +1,413 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <title>Coupon Add</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link href="adminassets/assets/css/main.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="index.html" class="brand-wrap">
+                <img src="assets/images/demos/demo-2/logo.png" class="logo" alt="Evara Dashboard">
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="dashboard.ejs"> <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+              
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="/admin/userlist"> <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">User-Lists</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/admin/userlist">User-Details</a>
+                        
+                    </div>
+                </li>
+                <li class="menu-item has-submenu ">
+                    <a class="menu-link" href="page-products-list.html"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/admin/productlist">Product List</a>
+                        <a href="/admin/categories">Categories</a>
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-orders-1.html"> <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Orders</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/admin/orderlist">Order List</a>                        
+                    </div>
+                </li>
+                <li class="menu-item has-submenu active">
+                    <a class="menu-link" href="page-sellers-cards.html"> <i class="icon material-icons md-store"></i>
+                        <span class="text">Coupons</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/admin/getCoupon">Coupon list</a>                        
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-form-product-1.html"> <i class="icon material-icons md-add_box"></i>
+                        <span class="text">Sales Report</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/admin/salesReport">Sales Report</a>                        
+                    </div>
+                </li>
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-transactions-1.html"> <i class="icon material-icons md-monetization_on"></i>
+                        <span class="text">Banner</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/admin/bannerList">Banner list</a>
+                    </div>
+                </li>
+                <li class="menu-item has-submenu ">
+                    <a class="menu-link" href="#"> <i class="icon material-icons md-person"></i>
+                        <span class="text">Offers</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="/admin/offerList">Offer List</a>                        
+                    </div>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/transactionList"> <i class="icon material-icons md-comment"></i>
+                        <span class="text">Transaction List</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="page-brands.html"> <i class="icon material-icons md-stars"></i>
+                        <span class="text">Brands</span> </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" disabled href="#"> <i class="icon material-icons md-pie_chart"></i>
+                        <span class="text">Statistics</span>
+                    </a>
+                </li>
+            </ul>
+            <hr>
+            <ul class="menu-aside">
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="#"> <i class="icon material-icons md-settings"></i>
+                        <span class="text">Settings</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="page-settings-1.html">Setting sample 1</a>
+                        <a href="page-settings-2.html">Setting sample 2</a>
+                    </div>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="page-blank.html"> <i class="icon material-icons md-local_offer"></i>
+                        <span class="text"> Starter page </span>
+                    </a>
+                </li>
+            </ul>
+            <br>
+            <br>
+        </nav>
+    </aside>
+    <main class="main-wrap">
+    <header class="main-header navbar">
+        <div class="col-search">
+            <form class="searchform">
+                <div class="input-group">
+                    <input list="search_terms" type="text" class="form-control" placeholder="Search term">
+                    <button class="btn btn-light bg" type="button"> <i class="material-icons md-search"></i></button>
+                </div>
+                <datalist id="search_terms">
+                    <option value="Products">
+                    <option value="New orders">
+                    <option value="Apple iphone">
+                    <option value="Ahmed Hassan">
+                </datalist>
+            </form>
+        </div>
+        <div class="col-nav">
+            <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i class="material-icons md-apps"></i> </button>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link btn-icon" href="#">
+                        <i class="material-icons md-notifications animation-shake"></i>
+                        <span class="badge rounded-pill">3</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i> </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="requestfullscreen nav-link btn-icon"><i class="material-icons md-cast"></i></a>
+                </li>
+                <li class="dropdown nav-item">
+                    <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownLanguage" aria-expanded="false"><i class="material-icons md-public"></i></a>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLanguage">
+                        <a class="dropdown-item text-brand" href="#"><img src="assets/imgs/theme/flag-us.png" alt="English">English</a>
+                        <a class="dropdown-item" href="#"><img src="assets/imgs/theme/flag-fr.png" alt="Français">Français</a>
+                        <a class="dropdown-item" href="#"><img src="assets/imgs/theme/flag-jp.png" alt="Français">日本語</a>
+                        <a class="dropdown-item" href="#"><img src="assets/imgs/theme/flag-cn.png" alt="Français">中国人</a>
+                    </div>
+                </li>
+                <li class="dropdown nav-item">
+                    <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false"> <img class="img-xs rounded-circle" src="assets/imgs/people/avatar2.jpg" alt="User"></a>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+                        <a class="dropdown-item" href="#"><i class="material-icons md-perm_identity"></i>Edit Profile</a>
+                        <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account Settings</a>
+                        <a class="dropdown-item" href="#"><i class="material-icons md-account_balance_wallet"></i>Wallet</a>
+                        <a class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a>
+                        <a class="dropdown-item" href="#"><i class="material-icons md-help_outline"></i>Help center</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-danger" href="/logout"><i class="material-icons md-exit_to_app"></i>Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+            <section class="content-main">
+                    <div class="content-header">
+                        <div>
+                            <h2 class="content-title card-title">Add Coupon </h2>
+                            <p>Add Coupons</p>
+                            <div style="height: 15px;" class="div">
+                              <% if (typeof message !=='undefined' ){ %>
+                                <% if (typeof error==='undefined' ) { %>
+                                <p style="color: rgb(0, 95, 219);">
+                                <%= message %>
+                                </p>
+                                <% } else { %>
+                                <p style="color: red;">
+                                <%= error.message %>
+                                </p>
+                                 <% } %>
+                               <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card ">
+                        <div class="card-body ">
+                            <div class="row">
+                                <div class="col-md">                           
+                                    <!DOCTYPE html>
+                                    <html lang="en">
+                                    <head>
+                                        <title>Add Coupon Form</title>
+                                    </head>
+                                    <body>                                    
+                                    <form id="couponForm" action="/admin/addCoupon" method="post">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label class="form-label mt-3" for="couponCode">Coupon Code</label>
+                                                    <input type="text" class="form-control" id="couponCode" name="couponCode" required>
+                                                    <div class="error-message" id="errorCouponCode"></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label mt-3" for="discount">Discount (%)</label>
+                                                    <input type="number" class="form-control" id="discount" name="discount" required>
+                                                    <div class="error-message" id="errorDiscount"></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label mt-3" for="limit">Limit</label>
+                                                    <input type="number" class="form-control" id="limit" name="limit" required>
+                                                    <div class="error-message" id="errorLimit"></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label mt-3" for="minCartAmt">Minimum Cart Amount</label>
+                                                    <input type="number" class="form-control" id="minCartAmt" name="minCartAmt" required>
+                                                    <div class="error-message" id="errorMinCartAmt"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label class="form-label mt-3" for="maxRedeemableAmt">Maximum Redeemable Amount</label>
+                                                    <input type="number" class="form-control" id="maxRedeemableAmt" name="maxRedeemableAmt" required>
+                                                    <div class="error-message" id="errorMaxRedeemableAmt"></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label mt-3" for="DiscountType">Discount Type</label>
+                                                    <select class="form-control" id="DiscountType" name="DiscountType" required>
+                                                        <option value="fixed">Fixed</option>
+                                                        <option value="percentage">Percentage</option>
+                                                    </select>
+                                                    <div class="error-message" ></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label mt-3" for="startDate">Valid From</label>
+                                                    <input type="date" class="form-control" id="startDate" name="startDate" required>
+                                                    <div class="error-message" id="errorStartDate"></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label mt-3" for="expiryDate">Expiry Date</label>
+                                                    <input type="date" class="form-control" id="expiryDate" name="expiryDate" required>
+                                                    <div class="error-message" id="errorExpiryDate"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-primary mt-50" id="addCouponButton" onclick="validateForm()">Add Coupon</button>
+                                </form>                             
+                            </body>
+                        </html>
+                    </div>
+                 </div>
+            </div> <!-- card body .// -->
+          </div> <!-- card .// -->
+        </section> <!-- content-main end// -->
+
+                <footer class="main-footer font-xs">
+                    <div class="row pb-30 pt-15">
+                        <div class="col-sm-6">
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script> ©, watchwear 
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-end">
+                                All rights reserved
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+        </main>
+        <script src="adminassets/assets/js/vendors/jquery-3.6.0.min.js"></script>
+        <script src="adminassets/assets/js/vendors/bootstrap.bundle.min.js"></script>
+        <script src="adminassets/assets/js/vendors/select2.min.js"></script>
+        <script src="adminassets/assets/js/vendors/perfect-scrollbar.js"></script>
+        <script src="adminassets/assets/js/vendors/jquery.fullscreen.min.js"></script>
+        <script src="adminassets/assets/js/vendors/chart.js"></script>
+        <script src="/adminassets/assets/js/validation.js"></script>
+        <!-- Main Script -->
+        <script src="adminassets/assets/js/main.js" type="text/javascript"></script>
+        <script src="adminassets/assets/js/custom-chart.js" type="text/javascript"></script>
+</body>
+<style>
+    .error-message{
+        color: red;
+        font-size: 12px;
+        height: 14px;
+    }
+</style>
+
+
+</html>
+<script>
+    function updateAddButtonState() {
+        var discountValue = parseInt(document.getElementById('discount').value, 10);
+        var discountType = document.getElementById('DiscountType').value;
+        var errorDiscount = document.getElementById('errorDiscount');
+        var addButton = document.getElementById('addCouponButton');
+
+        if (discountType === 'percentage') {
+            // Validate discount for percentage type
+            if (isNaN(discountValue) || discountValue < 1 || discountValue > 100) {
+                errorDiscount.textContent = 'Discount should be between 1 and 100 for Percentage type';
+                addButton.disabled = true;
+            } else {
+                errorDiscount.textContent = '';
+                addButton.disabled = false;
+            }
+        } else {
+            // No need to validate discount for fixed type
+            errorDiscount.textContent = '';
+            addButton.disabled = false;
+        }
+    }
+
+    document.getElementById('discount').addEventListener('input', function () {
+        updateAddButtonState();
+    });
+
+    document.getElementById('DiscountType').addEventListener('change', function () {
+        updateAddButtonState();
+    });
+
+    function validateForm() {
+        let isValid = true;
+
+        const errorFields = document.querySelectorAll('.error-message');
+        errorFields.forEach(field => {
+            field.textContent = '';
+        });
+
+        const couponCode = document.getElementById('couponCode').value.trim();
+        const discount = parseFloat(document.getElementById('discount').value);
+        const limit = parseInt(document.getElementById('limit').value);
+        const minCartAmt = parseInt(document.getElementById('minCartAmt').value);
+        const maxRedeemableAmt = parseInt(document.getElementById('maxRedeemableAmt').value);
+        const discountType = document.getElementById('DiscountType').value;
+        const startDate = document.getElementById('startDate').value;
+        const expiryDate = document.getElementById('expiryDate').value;
+
+        if (couponCode === '') {
+            showError('couponCode', 'Coupon code is required.');
+            isValid = false;
+        }
+
+        if (isNaN(discount) || discount <= 0) {
+            showError('discount', 'Discount should be a positive number.');
+            isValid = false;
+        }
+
+        if (isNaN(limit) || limit <= 0) {
+            showError('limit', 'Limit should be a positive number.');
+            isValid = false;
+        }
+
+        if (isNaN(minCartAmt) || minCartAmt <= 0) {
+            showError('minCartAmt', 'Minimum cart amount should be a positive number.');
+            isValid = false;
+        }
+
+        if (isNaN(maxRedeemableAmt) || maxRedeemableAmt <= 0) {
+            showError('maxRedeemableAmt', 'Maximum redeemable amount should be a positive number.');
+            isValid = false;
+        }
+
+        if (startDate === '') {
+            showError('startDate', 'Start date is required.');
+            isValid = false;
+        }
+
+        if (expiryDate === '') {
+            showError('expiryDate', 'Expiry date is required.');
+            isValid = false;
+        }
+
+        // Additional validation based on discount type
+        if (discountType === 'percentage') {
+            if (isNaN(discount) || discount < 1 || discount > 100) {
+                showError('discount', 'Discount should be between 1 and 100 for Percentage type.');
+                isValid = false;
+            }
+        }
+
+        if (isValid) {
+            document.getElementById('couponForm').submit();
+        }
+    }
+
+    function showError(inputId, errorMessage) {
+        const errorField = document.getElementById(`error${inputId.charAt(0).toUpperCase() + inputId.slice(1)}`);
+        errorField.textContent = errorMessage;
+    }
+</script>

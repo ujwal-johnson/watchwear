@@ -1,0 +1,74 @@
+<%- include('../layouts/header.ejs') %>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OTP Verification</title>
+  <link rel="stylesheet" href="public/assets/css/style.css">
+
+  <script>
+    // Function to move to the next input field
+    function moveToNextInput(currentInput, nextInput) {
+        if (currentInput.value.length === 1) {
+            nextInput.focus();
+        }
+    }
+
+    // Add event listeners to input fields
+    document.addEventListener("DOMContentLoaded", function () {
+        const otp1 = document.querySelector('input[name="otp1"]');
+        const otp2 = document.querySelector('input[name="otp2"]');
+        const otp3 = document.querySelector('input[name="otp3"]');
+        const otp4 = document.querySelector('input[name="otp4"]');
+
+        otp1.addEventListener("input", function () {
+            moveToNextInput(otp1, otp2);
+        });
+
+        otp2.addEventListener("input", function () {
+            moveToNextInput(otp2, otp3);
+        });
+
+        otp3.addEventListener("input", function () {
+            moveToNextInput(otp3, otp4);
+        });
+    });
+</script>
+
+</head>
+<body>
+    <div class="d-flex justify-content-center align-items-center container">
+        <div class="card py-5 px-3">
+            <h5 class="m-0">Verification</h5>
+            <span class="mobile-text">Enter the code we just sent on your email <b class="text-danger"></b></span>
+            <% if (error) { %>
+                <div class="error-message"><%= error %></div>
+              <% } %>
+            <form action="/submitOTP" method="post"> <!-- Use a form to submit OTP -->
+                <div class="d-flex flex-row mt-5 ml-5 mr-5">
+                    <input type="text" class="form-control col-1" name="otp1" autofocus>
+                    <br>
+                    <input type="text" class="form-control col-1" name="otp2">
+                    <br>
+                    <input type="text" class="form-control col-1" name="otp3">
+                    <br>
+                    <input type="text" class="form-control col-1" name="otp4">
+                </div>
+                <button type="submit" class="btn btn-primary mt-4">Submit</button> <!-- Add a submit button -->
+            </form>
+            <!-- <form action="/resendOTP" method="post">
+            <div class="text-center mt-2">
+                <button type="submit" class="btn btn-primary mt-4" style="border-radius: 20px;">
+                        Resend
+                </button> 
+            </div>
+        </form> -->
+        </div>
+    </div>
+</body>
+</html>
+
+
+<%- include('../layouts/footer.ejs') %>
+

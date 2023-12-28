@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="public/style.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .couponCard {
+            outline: rgb(7, 57, 37);
+            width: 280px;
+            padding: 13px;
+            border-radius: 20px;
+            background: yellow;
+            color: #000000;
+            height: 240px;
+            display: flex;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Add this line to hide overflow */
+            margin: 10px;
+        }
+    
+        .couponCard h1 {
+            font-size: 20px; /* Adjust the font size to fit comfortably */
+            margin-bottom: 5px; /* Add margin for better spacing */
+        }
+    
+        .couponCard span {
+            font-size: 18px; /* Adjust the font size to fit comfortably */
+        }
+    
+        .image {
+            position: absolute;
+            opacity: .1;
+            left: 0;
+            top: 0;
+        }
+    
+        .image2 {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            opacity: .1;
+        }
+    </style>
+
+<main class="main"> 
+    <div class="container light-style flex-grow-1 container-p-y">
+    <div class="page-content mt-4">
+        <div class="dashboard">
+            <div class="container">
+                <h1 class="font-weight-bold py-3 mb-4">Coupons</h1>                    
+
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 pt-0">
+                        <div class="list-group list-group-flush account-settings-links">
+                            <a class="list-group-item list-group-item-action " 
+                                href="/userprofile">Profile</a>
+                            <a class="list-group-item list-group-item-action" 
+                                href="/addressadd">CreateAddress</a>
+                            <a class="list-group-item list-group-item-action"
+                                href="/addresslist">List of Address</a>
+                            <a class="list-group-item list-group-item-action" 
+                                href="/orderlist">orderlist</a>
+                            <a class="list-group-item list-group-item-action" 
+                                href="/changepassword">Change Password</a>
+                            <a class="list-group-item list-group-item-action active" 
+                                href="/getcoupon">Coupon</a> 
+                            <a class="list-group-item list-group-item-action" 
+                                href="/getwallet">wallet</a> 
+                            <a class="list-group-item list-group-item-action"
+                                href="/home">Home</a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8 col-lg-6 d-flex justify-content-around">
+                        <div class="tab-content">
+                            <div id="tab-account" aria-labelledby="tab-account-link">
+                                <div class="row">
+                                    <% if (coupon.length > 0) { 
+                                        for (let i = 0; i < coupon.length; i++) { %>
+                                            <div class="col-lg-5">
+                                                <div class="d-flex justify-content-center couponContainer container">
+                                                    <div class=" couponCard card text-center">
+                                                        <div class="image"><img src="https://i.imgur.com/DC94rZe.png" width="100"></div>
+                                                        <div class="image2"><img src="https://i.imgur.com/DC94rZe.png" width="100"></div>
+                                                        <h1><% if(coupon[i].type =='percentage') { %> <%= coupon[i].discount %>% <% }
+                                                            else{ %>$ <%= coupon[i].discount %><%}%>
+                                                        </h1><span class="d-block">Discount</span>
+                                                        <span class="d-block text-muted" style="font-size: medium;">Expires at:- <br> <%= new Date(coupon[i].expiry).toLocaleDateString() %></span>
+                                                        <% if (coupon[i].usersUsed.includes(User)) { %>
+                                                            <p>Coupon Redeemed</p>
+                                                        <% } else { %>
+                                                            <div class="mt-4"><small>With Code : <%= coupon[i].code %></small></div>
+                                                            <button class="copy-coupon-btn btn btn-outline-2 " data-coupon="<%= coupon[i].code %>" style="background-color: orange;">
+                                                                <span class="" style="font-size: medium;"><i class="fas fa-copy"></i> Copy</span>
+                                                            </button>
+                                                        <% } %>
+                                                    </div>
+                                                </div> <!-- End .card-dashboard -->
+                                            </div><!-- End .col-lg-6 -->
+                    
+                                        <% } } else { %>
+                                            <div class="col-6 col-md-4 col-xl-3">
+                                                <p>No Coupon Found found</p>
+                                            </div>
+                                        <% } %>                                    
+                                    </div>
+                                </div><!-- .End .tab-pane --> 
+
+                                 
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        document.querySelectorAll('.copy-coupon-btn').forEach(function (button) {
+                                            button.addEventListener('click', function () {
+                                                const couponCode = this.dataset.coupon;
+                                                copyToClipboard(couponCode);
+                                            });
+                                        });
+                            
+                                        // Function to copy text to clipboard
+                                        function copyToClipboard(text) {
+                                            navigator.clipboard.writeText(text).then(function () {
+                                                Swal.fire({
+                                                    title: 'Copied',
+                                                    text: 'Coupon code copied',
+                                                    background: '#ffffff', 
+                                                    customClass: {
+                                                        popup: 'white-background',
+                                                    },
+                                                    icon: 'success',
+                                                });
+                                            }).catch(function (err) {
+                                                console.error('Unable to copy to clipboard', err);
+                                            });
+                                        }
+                                    });
+                                </script>                    
+                          </div>
+                    </div><!-- End .col-lg-9 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+        </div><!-- End .dashboard -->
+    </div><!-- End .page-content -->
+</div>
+</main><!-- End .main -->
+    
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    
+</body>
+
+</html>    

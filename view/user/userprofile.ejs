@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="public/style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    .circular-image-container {
+  width: 20%; 
+  height: 20%;
+  overflow: hidden;
+  border-radius: 50%; 
+}
+
+.circular-image-container img {
+  width: 100%; 
+  height: 100%;
+  object-fit: cover; 
+}
+
+</style>
+
+<body>
+    <div class="container light-style flex-grow-1 container-p-y">
+        <h4 class="font-weight-bold py-3 mb-4">
+        my account
+        </h4>
+        <div class="card overflow-hidden">
+            <div class="row no-gutters row-bordered row-border-light">
+                <div class="col-md-3 pt-0">
+                    <div class="list-group list-group-flush account-settings-links">
+                        <a class="list-group-item list-group-item-action active" 
+                            href="/userprofile">Profile</a>
+                        <a class="list-group-item list-group-item-action" 
+                            href="/addressadd">CreateAddress</a>
+                        <a class="list-group-item list-group-item-action"
+                            href="/addresslist">List of Address</a>
+                        <a class="list-group-item list-group-item-action" 
+                            href="/orderlist">orderlist</a>
+                        <a class="list-group-item list-group-item-action" 
+                            href="/changepassword">Change Password</a>
+                        <a class="list-group-item list-group-item-action" 
+                            href="/getcoupon">Coupon</a> 
+                        <a class="list-group-item list-group-item-action" 
+                            href="/getwallet">wallet</a> 
+                        <a class="list-group-item list-group-item-action"
+                            href="/home">Home</a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="account-general">                            
+                            <hr class="border-light m-0">
+                            <div class="card-body">
+                                <!-- <td><img src="/adminassets/userImages/<%=user.image%>" id="product_image" alt="users.jpg"></td> -->
+                                <td>
+                                    <div class="circular-image-container">
+                                      <img src="/adminassets/userImages/<%= user.image %>" id="product_image" alt="users.jpg">
+                                    </div>
+                                  </td>
+                                  
+                                  <div class="form-group">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-control mb-1" id="name" value="<%= user.name %>" readonly>
+                                    <div id="nameError" class="text-danger"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">E-mail</label>
+                                    <input type="email" class="form-control mb-1" id="email" value="<%= user.email %>" readonly>
+                                    <div id="emailError" class="text-danger"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" id="phone" value="<%= user.mobile %>" readonly>
+                                    <div id="phoneError" class="text-danger"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <a href="/editprofile?userId=<%=user._id%>" onclick="validateForm()" class="btn btn-primary">Edit</a>
+                                </div>
+                            </div>
+                        </div>                                                  
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-right mt-3">
+            <button type="button" class="btn btn-default" style="background-color: rgb(175, 14, 14); color: rgb(219, 208, 186)";><a href="/home">Cancel</a> </button>
+        </div>
+    </div>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript"></script>
+    <script>
+        function validateForm() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+    
+            var nameError = document.getElementById('nameError');
+            var emailError = document.getElementById('emailError');
+            var phoneError = document.getElementById('phoneError');
+    
+            nameError.innerHTML = "";
+            emailError.innerHTML = "";
+            phoneError.innerHTML = "";
+    
+            if (name.trim() === "") {
+                nameError.innerHTML = "Name is required.";
+                return false;
+            }
+    
+            if (email.trim() === "") {
+                emailError.innerHTML = "Email is required.";
+                return false;
+            }
+    
+            // Add more email validation if needed
+    
+            if (phone.trim() === "") {
+                phoneError.innerHTML = "Phone is required.";
+                return false;
+            } 
+           
+        }
+    </script>
+</body>
+
+</html>

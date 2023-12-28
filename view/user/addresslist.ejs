@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="public/style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container light-style flex-grow-1 container-p-y">
+        <h4 class="font-weight-bold py-3 mb-4">
+            Address List
+        </h4>
+        <div class="card overflow-hidden">
+            <div class="row no-gutters row-bordered row-border-light">
+                <div class="col-md-3 pt-0">
+                    <div class="list-group list-group-flush account-settings-links">
+                        <a class="list-group-item list-group-item-action " 
+                            href="/userprofile">Profile</a>
+                        <a class="list-group-item list-group-item-action" 
+                            href="/addressadd">CreateAddress</a>
+                        <a class="list-group-item list-group-item-action active"
+                            href="/addresslist">List of Address</a>
+                        <a class="list-group-item list-group-item-action" 
+                            href="/orderlist">orderlist</a>
+                        <a class="list-group-item list-group-item-action" 
+                            href="/changepassword">Change Password</a>
+                        <a class="list-group-item list-group-item-action" 
+                            href="/getcoupon">Coupon</a> 
+                        <a class="list-group-item list-group-item-action" 
+                            href="/getwallet">wallet</a> 
+                        <a class="list-group-item list-group-item-action"
+                            href="/home">Home</a>
+                    </div>
+                </div>
+    
+                <div class="col-md-9" id="account-info">
+                    <div class="card-body pb-4">
+                        <% for (let i = 0; i < addresses.length; i++) { %>
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label class="form-label">Street</label>
+                                            <input type="text" class="form-control" name="street" value="<%= addresses[i].street %>" style="pointer-events: none;">                                            
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="form-label">PIN-CODE</label>
+                                            <input type="text" class="form-control" name="PINCODE" value="<%= addresses[i].pinCode %>"style="pointer-events: none;">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label class="form-label">City</label>
+                                            <input type="text" class="form-control" name="city" value="<%= addresses[i].city %>" style="pointer-events: none;">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="form-label">State</label>
+                                            <input type="text" class="form-control" name="state" value="<%= addresses[i].state %>" style="pointer-events: none;">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Country</label>
+                                        <input type="text" class="form-control" name="country" value="<%= addresses[i].country %>" style="pointer-events: none;">
+                                    </div>
+                                    <div class="form-group">
+                                        <a href="/editaddress?addressId=<%=addresses[i]._id%>" class="btn btn-primary">Edit</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
+</body>
+
+</html>    

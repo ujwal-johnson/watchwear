@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="public/style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container light-style flex-grow-1 container-p-y">
+        <h4 class="font-weight-bold py-3 mb-4">
+        Wallet
+        </h4>
+        <div class="card overflow-hidden">
+            <div class="row no-gutters row-bordered row-border-light">
+                <div class="col-md-3 pt-0">
+                    <div class="list-group list-group-flush account-settings-links">
+                        <a class="list-group-item list-group-item-action " 
+                            href="/userprofile">Profile</a>
+                        <a class="list-group-item list-group-item-action" 
+                            href="/addressadd">CreateAddress</a>
+                        <a class="list-group-item list-group-item-action"
+                            href="/addresslist">List of Address</a>
+                        <a class="list-group-item list-group-item-action" 
+                            href="/orderlist">orderlist</a>
+                        <a class="list-group-item list-group-item-action" 
+                            href="/changepassword">Change Password</a>
+                        <a class="list-group-item list-group-item-action" 
+                            href="/getcoupon">Coupon</a> 
+                        <a class="list-group-item list-group-item-action active" 
+                            href="/getwallet">wallet</a> 
+                        <a class="list-group-item list-group-item-action"
+                            href="/home">Home</a>
+                    </div>
+                </div>
+                <div class="page-content">
+                    <div class="dashboard">
+                        <div class="container">
+                            <div class="row">                          
+                                 <div class="col-md-8 col-lg-10">
+                                    <div class="tab-content">               
+                                        <div class="tab-pane fade show active" id="tab-wallet" role="tabpanel" aria-labelledby="tab-wallet-link">                                         
+                                                <div  class="box mb-5 bg-light p-3">                                               
+                                                    <div class="text-center  ">                                                 
+                                                       <h3 class=""> <i class="fa-solid fa-wallet "></i> Wallet Balance:</h3>                                                  
+                                                    </div>
+                                                    <div class=" text-center  mb-3">
+                                                        <h5>   ₹ <%=user.walletBalance %></h5>                                              
+                                                     </div>                                                 
+                                                </div>                                                
+                                        </div><!-- .End .tab-pane -->                                        
+                                    </div>                                    
+                                  </div>
+                                </div><!-- End .col-lg-9 -->
+                            </div>
+                        </div><!-- End .container -->
+                    </div><!-- End .dashboard -->
+                    <div class="mt-5">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                  <th scope="col">Transaction Id</th>
+                                  <th scope="col">Description</th>
+                                  <th scope="col">Transaction Type</th>
+                                  <th scope="col">Date</th>
+                                  <th scope="col">Amount</th>
+                                
+                                </tr>
+                            </thead>
+                            <tbody>                
+                                <% transaction.forEach((transaction) => { %>
+                                    <tr style="height: 80px;">                    
+                                      <td><%= transaction._id %></td>
+                                      <td><%= transaction.description %></td>
+                                      <td>  <% if (transaction.type == 'debit') { %><span style="color: red;">
+                                        <%= transaction.type %></span>
+                                        <% } else { %>
+                                            <span style="color: green;"> <%= transaction.type %></span>
+                                            <% } %>
+                                    </td>
+                                      <td><%= new Date(transaction.date).toLocaleDateString() %></td>
+                                      <td>  <% if (transaction.type == 'debit') { %><span style="color: red;">
+                                        -  <%= transaction.amount %>
+                                      </span>
+                                      <% } else { %>
+                                        <span style="color: green;">+  <%= transaction.amount %></span>
+                                        <% } %>
+                                    </td>                               
+                                </tr>
+                                <% } )%>
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- End .page-content -->
+            </div>
+        </div>        
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
+</body>
+
+</html>

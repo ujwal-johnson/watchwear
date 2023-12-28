@@ -1,0 +1,634 @@
+<%- include('../layouts/header') %>
+    <div class="page-wrapper">
+            <main class="main">
+                <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
+                    <div class="container">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/home">Home</a></li>
+
+                            <li class="breadcrumb-item active" aria-current="page">My Account</li>
+                        </ol>
+                    </div><!-- End .container -->
+                </nav><!-- End .breadcrumb-nav -->
+
+                <div class="page-content">
+                    <div class="dashboard">
+                        <div class="container">
+                            <div class="row">
+                      
+
+                                <div class="col-md-8 col-lg-10">
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade " id="tab-dashboard" role="tabpanel"
+                                            aria-labelledby="tab-dashboard-link">
+                                            <p>this is dashboard</p>
+
+                                        </div>
+
+                              
+                                        <div class="tab-pane fade" id="tab-account" role="tabpanel"
+                                            aria-labelledby="tab-account-link">
+                                           
+                                              
+                                        <section class="content-body p-xl-4">
+                                            <form>
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <div class="row gx-3">
+                                                            <div class="col-6  mb-3">
+                                                                <label style="font-weight: 600;" class="form-label">Name</label>
+                                                               <p><%= user.name %></p>
+                                                            </div> <!-- col .// -->
+                                                            <div class="col-lg-6  mb-3">
+                                                                <label style="font-weight: 600;"   class="form-label">Email</label>
+                                                               <p><%= user.email %></p>
+                                                            </div> <!-- col .// -->
+                                                            <div class="col-lg-6  mb-3">
+                                                                <label  style="font-weight: 600;"    class="form-label">Phone</label>
+                                                                <p><%= user.mobile %></p>
+                                                            </div> <!-- col .// -->
+                                                    
+                                                     
+                                                        </div> <!-- row.// -->
+                                                    </div> <!-- col.// -->
+                                                    <aside class="col-lg-2">
+                                                        <figure class="text-lg-center">
+                                                            <img  class="img-lg mb-3 img-avatar " src="assets/images/userImages/<%=user.image%>" alt="User Photo">
+                                                          
+                                                        </figure>
+                                                    </aside> <!-- col.// -->
+                                                </div> <!-- row.// -->
+                                                <br>
+                                       
+                                            </form>
+                                            <hr class="my-5">
+                                            <div class="row" style="max-width:920px">
+                                                <div class="col-md">
+                                                    <article class="box mb-3 bg-light p-4">
+                                                        <a class="btn float-end btn-dark btn-sm rounded font-md " href="/changePassword">Change</a>
+                                                        <h6 class="mt-2">Password</h6>
+                                                        <small class="text-muted d-block " style="width:70%">You can reset or change your password by clicking here</small>
+                                                    </article>
+                                                </div> <!-- col.// -->
+                                                <div class="col-md">
+                                                    <article class="box mb-3 bg-light p-4">
+                                                        <a class="btn float-end btn-dark rounded btn-sm font-md" href="/edituser">Edit</a>
+                                                        <h6 class="mt-2">Edit account</h6>
+                                                        <small class="text-muted d-block" style="width:70%">You can change your account details by clicking here.</small>
+                                                    </article>
+                                                </div> <!-- col.// -->
+                                                 <!-- col.// -->
+                                            </div> <!-- row.// -->
+                                        </section>
+								    	<br>
+
+                                        </div><!-- .End .tab-pane -->
+
+                                        <div class="tab-pane fade show active" id="tab-orders" role="tabpanel"
+                                        aria-labelledby="tab-orders-link">
+
+
+                          
+
+
+
+                                        
+                                        <div class="card card-dashboard m-5 "   >
+
+                                    
+                                       
+                                                <div class="content-header">
+                                                    <div class="card-body">
+                                                        <h2 class="content-title card-title">Order details</h2>
+                                                        <p>Details for Order ID:<%= order.orderId %></p>
+                                                        <div class=" mt-4">
+                                                            <% if (order.status !== 'Cancelled' && order.status !== 'Return Confirmed'&& order.status !== 'return requested' && order.status !== 'Cancel requested'  ) { %>
+                                                                <% if (order.status === 'compleated') {%>                                                                    
+                                                                        <a class="btn btn-outline-primary-2" href="/returnOrder?orderId=<%= order._id %>"
+                                                                            onclick="return confirm('Are you sure you want to Return <%= order.items[0].product.name  %>');">
+                                                                            Return Order
+                                                                          </a>                                               
+                                                             <% }else{ %>
+                                                                <a class="btn btn-outline-primary-2" href="/cancelOrder?orderId=<%= order._id %>"
+                                                                    onclick="return confirm('Are you sure you want to Cancel <%= order.items[0].product.name  %>');">
+                                                                    Cancel Order
+                                                                  </a>                                                                                                      
+                                                                  <% } %>
+                                                                  <% } %>                                                               
+                                                         </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="card" >
+                                                    <header class="card-header">
+                                                        <div class="card-body" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                                                           
+                                                           
+                                                               <div>
+                                                                <b> Order ID: </b><span><P> <%= order._id %></P></span> 
+                                                                <div class="mt-5">     
+                                                                <b> Ordered Date :</b><p><span class="text"><%= order.orderDate.toDateString() %></span></p> 
+                                                            </div>                                                                        
+                                                               
+                                                            </div>                                                    
+                                                      
+                                                               <div style="width: 150px;">
+                                                                <b> Order Status:<P> <%= order.status %></P></b>                                                             
+                                                                
+                                                                <!-- for payment status -->
+                                                                <div class="mt-5">                                                                                                                    
+                                                            <b> Payment Status:</b><span><P> <%= order.paymentStatus %></P></span> 
+                                                        </div>                                        
+
+                                                    </div>                                      
+                                                                                                        
+                                                    </div>
+                                                    </header> <!-- card-header end// -->
+                                                    <div class="card-body">
+
+                                                        <div  style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                                                            <div style="width: 150px;">                                                                             
+                                                               <div >
+                                                                        <h6 class="mb-1"><i class="fa-solid fa-user">Customer</i> </h6>
+                                                                        <p class="mb-1">
+                                                                            <%= order.user.name %><br>  <br> <%= order.user.mobile %> <br> <%= order.user.email %>
+                                                                        </p>
+                                                                      
+                                                                    </div>  
+                                                            </div> <!-- col// -->
+                                                            <div style="width: 150px;">
+                                                               
+                                                                    <div class="text">
+                                                                        <h6 class="mb-1"><i class="fa-solid fa-cart-shopping"></i> Order info</h6>
+                                                                        <p class="mb-1">
+                                                                          <b>Status:</b> <%= order.status %><br><b>Pay method:</b><br> <%= order.paymentMethod %>
+                                                                        </p>                                                                      
+                                                                    </div>
+                                                                </div>
+                                                               
+                                                            <div style="width: 150px;">
+                                                          
+                                                                    <div class="text">
+                                                                        <h6 class="mb-1"><i class="fa-solid fa-cart-shopping"></i> Order Address</h6>
+                                                                        <p class="mb-1">
+                                                                          <b>Address:</b> <%= order.address.street %><br>
+                                                                        </p>                                                                      
+                                                                    </div>
+                                                                </div>
+                                                                                                                          
+                                                              
+                                                            </div> <!-- col// -->
+                                                        </div> <!-- row // -->
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-lg">
+                                                                <div class="table-responsive">
+                                                                    <table class="table">
+                                                                        <thead>
+                                                                            
+                                                                            <tr>
+                                                                                <th width="">Product</th>
+                                                                                <th width="40%"></th>
+                                                                                <th width="20%">Unit Price</th>
+                                                                                <th width="20%">Quantity</th>
+                                                                                <th width="30%">Total</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <% order.items.forEach(function(item) { %>
+                                                                            <tr>
+                                                                                <td>
+                                                                                  
+                                                                                        <img src="/adminassets/productImages/<%= item.product.images[0] %>" width="40" height="40" class="img-xs" alt="Item">
+                                                                                    
+
+                                                                                </td>
+                                                                                <td>
+                                                                                  
+                                                                                       
+                                                                                        <div class="info">  <%= item.product.name %> </div>
+                                                                                    
+                                                                                </td>
+                                                                                <td><%= item.product.price %> </td>
+                                                                                <td> <%= item.quantity %></td>
+                                                                                <td> ₹<%= item.product.price * item.quantity %>    </td>  
+                                                                                <td>                                                                    
+                                                                                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center" method="get"> 
+                                                                                        <% if(item.status =='Cancel Requested'){ %>
+                                                                                            <span class="badge badge-pill badge-warning">Cancel Requested</span>
+                                                
+                                                                                       
+                                                                                        <% }else if(item.status =='Cancelled'){ %>
+                                                                                            <span class="badge badge-pill badge-danger">Cancelled</span>
+                                                
+                                                                                        <% }else { %>
+                                                                                            <form action="/cancelSingleProduct?productId=<%=item.product._id%>&singleProduct=true">
+                                                                                                <input type="hidden" name="productId" value="<%= item.product._id %>" id="">
+                                                                                                <input type="hidden" value="Product Cancel" name="status" id="">
+                                                                                                <input type="hidden" name="orderId" value="<%= order._id %>" id="">
+                                                                                                <button type="submit" class="btn btn-danger">Cancel</button>
+                                                                                            </form>
+                                                 
+                                                                                        <% } %>
+                                                                                    </div>
+                                                                                </td>      
+                                                                                
+                                                                            </tr>
+                                                                             <% }); %>
+                                    
+                                    
+                                                                            <tr>
+                                                                              
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <div class="d-flex justify-content-end">
+                                                                        <div  >
+                                                                            <dl class="dlist d-flex justify-content-between" style="width: 250px;">
+                                                                                <p>Subtotal:</p>
+                                                                                <p> ₹  <%= order.totalAmount-100 %> </p>
+                                                                            </dl>
+                                                                            <dl class="dlist d-flex justify-content-between" style="width: 250px;">
+                                                                                <p>Shipping cost:</p>
+                                                                                <p> ₹ 100</p>
+                                                                            </dl> 
+                                                                            <dl class="dlist d-flex justify-content-between"style="width: 250px;">
+                                                                                <h5>Grand total:</h5>
+                                                                                <h5>₹  <%= order.totalAmount %> </h5>
+                                                                            </dl>
+                                                                          
+                                                                        </div>
+                                                                    </div> 
+                                                                </div> <!-- table-responsive// -->
+                                                            </div> <!-- col// -->
+                                                            
+                                                        
+                                                        </div>
+                                                    </div>
+                                                    </div> <!-- card-body end// -->
+                                                </div> <!-- card end// -->
+                                           
+                                          
+
+
+                                                
+                    
+                                          
+                                        </div>
+
+                                        <div class="tab-pane fade" id="tab-track" role="tabpanel"
+                                            aria-labelledby="tab-track-link">
+                                            <p>Track order</p>
+
+                                        </div><!-- .End .tab-pane -->
+
+                                        <div class="tab-pane fade" id="tab-address" role="tabpanel"
+                                            aria-labelledby="tab-address-link">
+                                         
+                                          
+                                            <div class="card card-dashboard">
+                                                <div class="card-body">
+                                                    <h3 class="card-title">Addresses</h3><!-- End .card-title --> <br>
+                                                    <p>You add your address details by clicking here.<br>
+
+                                                    <a class="btn float-end btn-dark rounded btn-sm font-md" href="/addaddress?userId=<%= user._id %>">Add Address</a>
+
+
+                                                </div><!-- End .card-body -->
+                                            </div><!-- End .card-dashboard -->
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="card card-dashboard">
+                                                        <div class="card-body">
+                                                            <h3 class="card-title">Billing Address</h3><!-- End .card-title -->
+    
+                                                            <p>User Name<br>
+                                                            User Company<br>
+                                                            John str<br>
+                                                            New York, NY 10001<br>
+                                                            1-234-987-6543<br>
+                                                            yourmail@mail.com<br>
+                                                            <a href="#">Edit <i class="icon-edit"></i></a></p>
+                                                        </div><!-- End .card-body -->
+                                                    </div><!-- End .card-dashboard -->
+                                                </div><!-- End .col-lg-6 -->
+    
+                                                <div class="col-lg-6">
+                                                    <div class="card card-dashboard">
+                                                        <div class="card-body">
+                                                            <h3 class="card-title">Shipping Address</h3><!-- End .card-title -->
+    
+                                                            <p>You have not set up this type of address yet.<br>
+                                                            <a href="#">Edit <i class="icon-edit"></i></a></p>
+                                                        </div><!-- End .card-body -->
+                                                    </div><!-- End .card-dashboard -->
+                                                </div><!-- End .col-lg-6 -->
+                                            </div><!-- End .row -->
+                                      
+                                            
+                                        </div>
+                                        
+                                 
+                                        <div class="tab-pane fade" id="tab-cart" role="tabpanel"
+                                            aria-labelledby="tab-cart-link">
+                                            <div class="cart">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-lg-9">
+                                                            <table class="table table-cart table-mobile">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Product</th>
+                                                                        <th>Price</th>
+                                                                        <th>Quantity</th>
+                                                                        <th>Total</th>
+                                                                        <th></th>
+                                                                    </tr>
+                                                                </thead>
+                            
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="product-col">
+                                                                            <div class="product">
+                                                                                <figure class="product-media">
+                                                                                    <a href="#">
+                                                                                        <img src="assets/images/products/table/product-1.jpg" alt="Product image">
+                                                                                    </a>
+                                                                                </figure>
+                            
+                                                                                <h3 class="product-title">
+                                                                                    <a href="#">Beige knitted elastic runner shoes</a>
+                                                                                </h3><!-- End .product-title -->
+                                                                            </div><!-- End .product -->
+                                                                        </td>
+                                                                        <td class="price-col">$84.00</td>
+                                                                        <td class="quantity-col">
+                                                                            <div class="cart-product-quantity">
+                                                                                <input type="number" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                                                            </div><!-- End .cart-product-quantity -->
+                                                                        </td>
+                                                                        <td class="total-col">$84.00</td>
+                                                                        <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="product-col">
+                                                                            <div class="product">
+                                                                                <figure class="product-media">
+                                                                                    <a href="#">
+                                                                                        <img src="assets/images/products/table/product-2.jpg" alt="Product image">
+                                                                                    </a>
+                                                                                </figure>
+                            
+                                                                                <h3 class="product-title">
+                                                                                    <a href="#">Blue utility pinafore denim dress</a>
+                                                                                </h3><!-- End .product-title -->
+                                                                            </div><!-- End .product -->
+                                                                        </td>
+                                                                        <td class="price-col">$76.00</td>
+                                                                        <td class="quantity-col">
+                                                                            <div class="cart-product-quantity">
+                                                                                <input type="number" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                                                            </div><!-- End .cart-product-quantity -->                                 
+                                                                        </td>
+                                                                        <td class="total-col">$76.00</td>
+                                                                        <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table><!-- End .table table-wishlist -->
+                            
+                                                      
+                                                        </div><!-- End .col-lg-9 -->
+                                                    
+                            
+                                                    </div><!-- End .row -->
+                                                </div><!-- End .container -->
+                                            </div><!-- End .cart -->
+                                        </div><!-- .End .tab-pane -->
+                                        <div class="tab-pane fade" id="tab-wishlist" role="tabpanel"
+                                            aria-labelledby="tab-wishlist-link">
+                                            <div class="container">
+                                                <table class="table table-wishlist table-mobile" style="width:800px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Product</th>
+                                                            <th>Price</th>
+                                                            <th>Stock Status</th>
+                                                            <th></th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                            
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="product-col">
+                                                                <div class="product">
+                                                                    <figure class="product-media">
+                                                                        <a href="#">
+                                                                            <img src="assets/images/products/table/product-1.jpg" alt="Product image">
+                                                                        </a>
+                                                                    </figure>
+                            
+                                                                    <h3 class="product-title">
+                                                                        <a href="#">Beige knitted elastic runner shoes</a>
+                                                                    </h3><!-- End .product-title -->
+                                                                </div><!-- End .product -->
+                                                            </td>
+                                                            <td class="price-col">$84.00</td>
+                                                            <td class="stock-col"><span class="in-stock">In stock</span></td>
+                                                            <td class="action-col">
+                                                                <div class="dropdown">
+                                                                <button class="btn btn-block btn-outline-primary-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="icon-list-alt"></i>Select Options
+                                                                </button>
+                            
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="#">First option</a>
+                                                                    <a class="dropdown-item" href="#">Another option</a>
+                                                                    <a class="dropdown-item" href="#">The best option</a>
+                                                                  </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+                                                        </tr>
+                                                 
+                                                   
+                                                    </tbody>
+                                                </table><!-- End .table table-wishlist -->
+                  
+                                            </div><!-- End .container -->
+                                        </div><!-- .End .tab-pane -->
+                                        <div class="tab-pane fade" id="tab-wallet" role="tabpanel"
+                                            aria-labelledby="tab-wallet-link">
+                                            <p>Wallet</p>
+                                        </div><!-- .End .tab-pane -->
+                                        
+                                    </div>
+                                </div><!-- End .col-lg-9 -->
+                            </div>
+                        </div><!-- End .container -->
+                    </div><!-- End .dashboard -->
+                </div><!-- End .page-content -->
+            </main><!-- End .main -->
+
+    </div><!-- End .page-wrapper -->
+    <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+
+
+    <!-- Sign in / Register Modal -->
+    <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="icon-close"></i></span>
+                    </button>
+
+                    <div class="form-box">
+                        <div class="form-tab">
+                            <ul class="nav nav-pills nav-fill" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="signin-tab" data-toggle="tab" href="#signin"
+                                        role="tab" aria-controls="signin" aria-selected="true">Sign In</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab"
+                                        aria-controls="register" aria-selected="false">Register</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="tab-content-5">
+                                <div class="tab-pane fade show active" id="signin" role="tabpanel"
+                                    aria-labelledby="signin-tab">
+                                    <form action="#">
+                                        <div class="form-group">
+                                            <label for="singin-email">Username or email address *</label>
+                                            <input type="text" class="form-control" id="singin-email"
+                                                name="singin-email" required>
+                                        </div><!-- End .form-group -->
+
+                                        <div class="form-group">
+                                            <label for="singin-password">Password *</label>
+                                            <input type="password" class="form-control" id="singin-password"
+                                                name="singin-password" required>
+                                        </div><!-- End .form-group -->
+
+                                        <div class="form-footer">
+                                            <button type="submit" class="btn btn-outline-primary-2">
+                                                <span>LOG IN</span>
+                                                <i class="icon-long-arrow-right"></i>
+                                            </button>
+
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="signin-remember">
+                                                <label class="custom-control-label" for="signin-remember">Remember
+                                                    Me</label>
+                                            </div><!-- End .custom-checkbox -->
+
+                                            <a href="#" class="forgot-link">Forgot Your Password?</a>
+                                        </div><!-- End .form-footer -->
+                                    </form>
+                                    <div class="form-choice">
+                                        <p class="text-center">or sign in with</p>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <a href="#" class="btn btn-login btn-g">
+                                                    <i class="icon-google"></i>
+                                                    Login With Google
+                                                </a>
+                                            </div><!-- End .col-6 -->
+                                            <div class="col-sm-6">
+                                                <a href="#" class="btn btn-login btn-f">
+                                                    <i class="icon-facebook-f"></i>
+                                                    Login With Facebook
+                                                </a>
+                                            </div><!-- End .col-6 -->
+                                        </div><!-- End .row -->
+                                    </div><!-- End .form-choice -->
+                                </div><!-- .End .tab-pane -->
+                                <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                                    <form action="#">
+                                        <div class="form-group">
+                                            <label for="register-email">Your email address *</label>
+                                            <input type="email" class="form-control" id="register-email"
+                                                name="register-email" required>
+                                        </div><!-- End .form-group -->
+
+                                        <div class="form-group">
+                                            <label for="register-password">Password *</label>
+                                            <input type="password" class="form-control" id="register-password"
+                                                name="register-password" required>
+                                        </div><!-- End .form-group -->
+
+                                        <div class="form-footer">
+                                            <button type="submit" class="btn btn-outline-primary-2">
+                                                <span>SIGN UP</span>
+                                                <i class="icon-long-arrow-right"></i>
+                                            </button>
+
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="register-policy"
+                                                    required>
+                                                <label class="custom-control-label" for="register-policy">I agree to the
+                                                    <a href="#">privacy policy</a> *</label>
+                                            </div><!-- End .custom-checkbox -->
+                                        </div><!-- End .form-footer -->
+                                    </form>
+                                    <div class="form-choice">
+                                        <p class="text-center">or sign in with</p>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <a href="#" class="btn btn-login btn-g">
+                                                    <i class="icon-google"></i>
+                                                    Login With Google
+                                                </a>
+                                            </div><!-- End .col-6 -->
+                                            <div class="col-sm-6">
+                                                <a href="#" class="btn btn-login  btn-f">
+                                                    <i class="icon-facebook-f"></i>
+                                                    Login With Facebook
+                                                </a>
+                                            </div><!-- End .col-6 -->
+                                        </div><!-- End .row -->
+                                    </div><!-- End .form-choice -->
+                                </div><!-- .End .tab-pane -->
+                            </div><!-- End .tab-content -->
+                        </div><!-- End .form-tab -->
+                    </div><!-- End .form-box -->
+                </div><!-- End .modal-body -->
+            </div><!-- End .modal-content -->
+        </div><!-- End .modal-dialog -->
+    </div><!-- End .modal -->
+    <script>
+        function isReturnAllowed(deliveryDate) {
+  const sevenDaysInMillis = 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
+  const currentDate = new Date();
+  const returnDate = new Date(deliveryDate.getTime() + sevenDaysInMillis);
+  
+  return currentDate <= returnDate;
+}
+    </script>
+    <script>
+        function removeCartItem(productId) {
+    fetch(`/removeCartItem?productId=${productId}`, {
+        method: 'DELETE',
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            location.reload();
+        } else {
+            console.error('Failed to remove cart item:', data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error removing cart item:', error);
+    });
+}
+    </script>
+
+    <%- include('../layouts/footer') %>
