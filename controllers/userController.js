@@ -725,6 +725,7 @@ const addtocart = async (req, res) => {
         const userId = req.session.user_id;
         const { qty } = req.body;        
         console.log(userId)
+        
         const existingCart = await Cart.findOne({ user: userId });
         let newCart = {};
 
