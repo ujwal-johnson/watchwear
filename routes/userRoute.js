@@ -38,7 +38,7 @@ user_route.use(express.static('public'))
 user_route.get('/',isLogout,controller.loadHome)
 
 //login
-user_route.get('/login',controller.loginlog)
+user_route.get('/login',isLogout,controller.loginlog)
 user_route.post('/login',controller.verifyLogin)
 user_route.get('/loadhome',isLogin,controller.loadHome)
 user_route.get('/otp-page', controller.loadOTPpage)
