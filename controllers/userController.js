@@ -842,7 +842,7 @@ const addtocart = async (req, res) => {
 const viewcart = async (req, res) => {
     try {
         const userid = req.session.user_id;
-        const carts = await Cart.findOne({ user: userid }).populate('items.product');
+        const carts = await Cart.findOne({ user: userid }).populate('items.product').lean();
 
         const cart = carts ? carts.items : [];
         const subtotal = calculateSubtotal(cart);
@@ -873,7 +873,7 @@ const viewcart = async (req, res) => {
           }
       
         res.render('cart', {
-        carts:carts.items,
+        carts: carts ? carts.items : [],
         User: userid,
         cart,
         productTotal,
