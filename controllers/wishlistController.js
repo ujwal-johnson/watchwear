@@ -39,16 +39,17 @@ const addToWishlist = async (req, res) => {
 
             if (existingWishlistItem) {
                 res.redirect(`/productdetail?productId=${productId}`)
+                return;
             } else {
                 userWishlist.items.push({ product: productId });
             }
         }
 
         await userWishlist.save();
-        console.log( req.session.lastGetRequest);
 
-        res.redirect( req.session.lastGetRequest);
-    } catch (error) {
+        const redirectUrl = req.session.lastGetRequest || '/wishlist'; 
+        res.redirect(redirectUrl);
+        } catch (error) {
         console.error('Error adding product to wishlist:', error);
     }
 };
