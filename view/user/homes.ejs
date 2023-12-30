@@ -101,7 +101,8 @@
                        <%}else{%>
                         <div class="d-flex align-items-center">
                             <a href="/login" class="mr-2">Login</a>
-                            <a href="/signup">SignUp</a>
+                            <span>/</span> 
+                            <a href="/signup"> SignUp</a>
                         </div>
                         <%}%>
                     </div><!-- End .header-right -->
@@ -143,11 +144,10 @@
             </div><!-- End .intro-slider-container -->
 
                 
-                <div class="products-container" data-layout="fitRows">            
                     <div class="product-item furniture col-6 col-md-4 col-lg-3">
                         <div class="product product-4">
-                            <figure class="product-media">
                             <% for (let i = 0; i < products.length; i++) { %>
+                            <figure class="product-media">
                                 <a href="/productdetail?productId=<%= products[i]._id %>">
                                     <img src="/adminassets/productImages/<%= products[i].images[0] %>" class="img-sm img-thumbnail" alt="Item">
                                 </a>
@@ -161,11 +161,10 @@
                             <% } %>
                         </div><!-- End .product -->
                     </div><!-- End .product-item -->                                       
-                </div><!-- End .products-container -->
            
 
             <div class="more-container text-center mt-0 mb-7">
-                <a href="/productlist" class="btn btn-outline-dark-3 btn-more"><span>more products</span><i class="la la-refresh"></i></a>
+                <a href="/productlist" class="btn btn-outline-dark-3 btn-more"><span>Click here for Products</span><i class="la icon-long-arrow-right"></i></a>
             </div><!-- End .more-container -->
         </main><!-- End .main -->
 
