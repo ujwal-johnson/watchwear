@@ -11,7 +11,7 @@ const nodemailer=require('nodemailer')
 const nocache= require('nocache') // for not going back
 
 
-mongoose.connect("mongodb://127.0.0.1:27017/watchwear")
+mongoose.connect("mongodb+srv://ujwaljo1422:Kl7cm@cluster0.d1ognsm.mongodb.net/watchwear")
 mongoose.connection.on('connected',()=>{
     console.log('connected to MongoDB');
 })
