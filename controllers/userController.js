@@ -289,6 +289,7 @@ const resetPassword = async (req, res) => {
       { $set: { password: secure_password } }
     );
     if (req.session.user_id) {
+      delete req.session.user_id;
       res.redirect("/login");
     } else {
       delete req.session.user_id;
