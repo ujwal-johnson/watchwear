@@ -51,9 +51,11 @@ function generateOTP(length) {
 
   const loadHome = async (req, res) => {
     try {
+      let query = { is_block: 0 }
       const currentDate = new Date();
       const categoryList = await Category.find({ is_listed: true });
-      const productList = await product.find({ is_listed: true });
+      const productList = await product.find(query);
+      console.log(productList);
       const banner = await Banner.find({        
         isListed: true
       }).populate("product");
@@ -80,9 +82,10 @@ function generateOTP(length) {
 
 const loginload = async (req, res) => {
     try {
+      let query = { is_block: 0 }
       const currentDate = new Date();
       const categoryList = await Category.find({ is_listed: true });
-      const productList = await product.find({ is_listed: true });
+      const productList = await product.find(query);
       const banner = await Banner.find({        
         isListed: true
       }).populate("product");

@@ -143,24 +143,21 @@
                 <span class="slider-loader"></span><!-- End .slider-loader -->
             </div><!-- End .intro-slider-container -->
 
-                
+                <h3>List of Products Available</h3>
+            <div class="products-container" data-layout="fitRows">
+                <% for (let i = 0; i < products.length; i++) { %>
                     <div class="product-item furniture col-6 col-md-4 col-lg-3">
                         <div class="product product-4">
-                            <% for (let i = 0; i < products.length; i++) { %>
                             <figure class="product-media">
                                 <a href="/productdetail?productId=<%= products[i]._id %>">
                                     <img src="/adminassets/productImages/<%= products[i].images[0] %>" class="img-sm img-thumbnail" alt="Item">
-                                </a>
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                </div><!-- End .product-action -->
-                                <div class="product-action">
-                                    <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
-                                </div><!-- End .product-action -->
+                                </a>                               
                             </figure><!-- End .product-media -->
-                            <% } %>
                         </div><!-- End .product -->
-                    </div><!-- End .product-item -->                                       
+                    </div><!-- End .product-item -->
+                <% } %>
+            </div><!-- End .products-container -->
+                                                 
            
 
             <div class="more-container text-center mt-0 mb-7">
