@@ -651,7 +651,9 @@ const loadproductdetail = async (req, res) => {
         const productId = req.query.productId
         const products = await product.findById(productId)
         const categories = await Category.find();
-        res.render('productdetail',{products,categories})
+        const successMessage = req.query.successMessage;
+
+        res.render('productdetail',{products,categories,successMessage})
        
     } catch (error) {
         console.log(error.message);
@@ -774,7 +776,9 @@ const addtocart = async (req, res) => {
         }
 
         req.session.cartLength = (existingCart || newCart).items.length;
-        res.redirect(`/productdetail?productId=${ProductId}`)
+
+        const successMessage = 'Product added to cart successfully!';
+        res.redirect(`/productdetail?productId=${ProductId}&successMessage=${encodeURIComponent(successMessage)}`)
         res.status(200).json({ success: true, message: 'Product added to cart' });
 
     } catch (error) {
