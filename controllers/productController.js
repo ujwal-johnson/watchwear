@@ -333,8 +333,9 @@ const updateproduct = async (req, res) => {
     console.log(updatedProduct);
 
     if (req.files && req.files.length > 0) {
-      updatedProduct.images[0] = req.files[0].filename;
-
+      for (let i = 0; i < req.files.length; i++) {
+        updatedProduct.images[i] = req.files[i].filename;
+      }
     }
 
     await updatedProduct.save();
