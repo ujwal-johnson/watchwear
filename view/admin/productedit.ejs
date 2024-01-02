@@ -249,19 +249,13 @@
                 
                     <div class="card mb-4">
                         <div class="card-body">
-                                <label class="form-label">Images</label><br>
-                                <img src="/adminassets/productImages/<%= products.images[0] %>" height="40" width="40" alt="<%= products.images[0] %>">
-                                <input class="form-control" name="images" value="<%= products.images[0] %>" accept="image/*" type="file"><br>
-                              
-                                <img src="/adminassets/productImages/<%= products.images[1] %>" height="40" width="40" alt="<%= products.images[1] %>">
-                                <input class="form-control" name="images" value="<%= products.images[1] %>" accept="image/*" type="file"><br>
-                              
-                                <img src="/adminassets/productImages/<%= products.images[2] %>" height="40" width="40" alt="<%= products.images[2] %>">
-                                <input class="form-control" name="images" value="<%= products.images[2] %>" accept="image/*" type="file"><br>
-                              
-                                <img src="/adminassets/productImages/<%= products.images[3] %>" height="40" width="40" alt="<%= products.images[3] %>">
-                                <input class="form-control" name="images" value="<%= products.images[3] %>" accept="image/*" type="file"><br>                             
-                        </div>
+                            <% for (let i = 0; i < 4; i++) { %>
+                              <label class="form-label">Image <%= i+1 %></label><br>
+                              <img src="/adminassets/productImages/<%= products.images[i] %>" height="40" width="40" alt="<%= products.images[i] %>">
+                              <input class="form-control" name="images" value="<%= products.images[i] %>" accept="image/*" type="file"><br>
+                            <% } %>
+                          </div>
+                          
                     </div>
                 </div> <!-- card end// -->
                 
