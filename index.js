@@ -1,7 +1,7 @@
 const adminRoute = require('./routes/adminRoute');
 const express= require('express')
 const app= express()
-const port =3000
+const port =3001
 const expressSession=require('express-session')
 const userRoutes=require('./routes/userRoute')
 const mongoose=require('mongoose')
@@ -10,8 +10,9 @@ const speakeasy= require('speakeasy')
 const nodemailer=require('nodemailer')
 const nocache= require('nocache') // for not going back
 
+// mongoose.connect("mongodb://localhost:27017")
 
-mongoose.connect("mongodb+srv://ujwaljo1422:Kl7cm@cluster0.d1ognsm.mongodb.net/watchwear")
+mongoose.connect("mongodb+srv://ujwaljo1422:ujwaljo1422@cluster0.d1ognsm.mongodb.net/")
 mongoose.connection.on('connected',()=>{
     console.log('connected to MongoDB');
 })
@@ -53,9 +54,6 @@ app.get('/error', (req, res) => {
     res.status(500).send('Internal Server Error'); 
 });
 
-
-
-  
 
 
 
